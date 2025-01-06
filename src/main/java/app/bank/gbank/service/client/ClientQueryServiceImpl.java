@@ -20,4 +20,8 @@ public class ClientQueryServiceImpl implements ClientQueryService {
                 .orElseThrow(ResourceNotFoundException::new);
     }
 
+    @Override
+    public boolean existsByPhone(String phone) {
+        return clientRepository.existsByPhone(phone);
+    }
 }

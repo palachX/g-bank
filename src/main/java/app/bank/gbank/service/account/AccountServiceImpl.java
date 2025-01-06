@@ -12,8 +12,8 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class AccountServiceImpl implements AccountService {
 
-    private AccountQueryService accountQueryService;
-    private AccountCommandService accountCommandService;
+    private final AccountQueryService accountQueryService;
+    private final AccountCommandService accountCommandService;
 
     @Override
     public void create(Account object) {

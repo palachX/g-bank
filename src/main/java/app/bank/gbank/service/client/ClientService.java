@@ -5,4 +5,7 @@ import app.bank.gbank.service.CommandService;
 import app.bank.gbank.service.QueryService;
 
 public interface ClientService extends QueryService<Client>, CommandService<Client> {
+
+    boolean existsByPhone(String phone);
+
 }

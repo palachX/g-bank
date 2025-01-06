@@ -6,6 +6,7 @@ import app.bank.gbank.repository.CardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.UUID;
 
 @Service
@@ -20,4 +21,8 @@ public class CardQueryServiceImpl implements CardQueryService {
                 .orElseThrow(ResourceNotFoundException::new);
     }
 
+    @Override
+    public boolean existsByNumberAndDate(String number, Date dateExpiration) {
+        return cardRepository.existsByNumberAndDate(number, dateExpiration);
+    }
 }

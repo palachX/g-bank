@@ -38,4 +38,7 @@ public class Card {
     @ManyToOne
     private Account account;
 
+    public Card(Account account) {
+        this.account = account;
+    }
 }

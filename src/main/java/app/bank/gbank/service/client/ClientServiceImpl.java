@@ -13,8 +13,8 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class ClientServiceImpl implements ClientService {
 
-    private ClientQueryService clientQueryService;
-    private ClientCommandService clientCommandService;
+    private final ClientQueryService clientQueryService;
+    private final ClientCommandService clientCommandService;
 
     @Override
     public void create(Client object) {
@@ -24,5 +24,10 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public Client getById(UUID id) {
         return clientQueryService.getById(id);
+    }
+
+    @Override
+    public boolean existsByPhone(String phone) {
+        return clientQueryService.existsByPhone(phone);
     }
 }
