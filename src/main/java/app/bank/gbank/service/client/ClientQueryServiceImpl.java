@@ -6,6 +6,7 @@ import app.bank.gbank.repository.ClientRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -23,5 +24,10 @@ public class ClientQueryServiceImpl implements ClientQueryService {
     @Override
     public boolean existsByPhone(String phone) {
         return clientRepository.existsByPhone(phone);
+    }
+
+    @Override
+    public Client getByPhone(String phone) {
+        return clientRepository.findByPhone(phone).orElseThrow(ResourceNotFoundException::new);
     }
 }

@@ -9,4 +9,6 @@ public interface CardQueryService extends QueryService<Card> {
 
     boolean existsByNumberAndDate(String number, Date dateExpiration);
 
+    Card getByNumberAndDateAndCvv(String number, Date date, String cvv);
+
 }

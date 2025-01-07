@@ -7,7 +7,11 @@ import app.bank.gbank.web.dto.LoginRequestDto;
 import app.bank.gbank.web.dto.LoginResponseDto;
 import app.bank.gbank.web.dto.OnCreate;
 import app.bank.gbank.web.dto.mapper.ClientMapper;
+import app.bank.gbank.web.security.jwt.JwtProperties;
+import io.github.ilyalisov.jwt.service.TokenService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +25,7 @@ public class AuthController {
 
     private final AuthService authService;
     private final ClientMapper clientMapper;
+
 
     @PostMapping("/register")
     public void register(@RequestBody @Validated(OnCreate.class) final ClientDto clientDto) {
