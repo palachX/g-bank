@@ -21,10 +21,7 @@ public interface ClientRepository extends JpaRepository<Client, UUID> {
             VALUES (:clientId, :cardId)
             """, nativeQuery = true
     )
-    void addCard(
-            @Param("clientId") String clientId,
-            @Param("cardId") String cardId
-    );
+    void addCard(@Param("clientId") UUID clientId, @Param("cardId") UUID cardId);
 
     Optional<Client> findByAccountId(UUID accountId);
 }

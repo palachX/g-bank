@@ -35,7 +35,8 @@ public class AuthServiceImpl implements AuthService {
         );
 
         LoginResponseDto response = new LoginResponseDto();
-
+        Client client = clientService.getByPhone(requestDto.getPhone());
+        response.setId(client.getId());
         response.setAccessToken(
                 tokenService.create(TokenParameters.builder(
                                         requestDto.getPhone(),

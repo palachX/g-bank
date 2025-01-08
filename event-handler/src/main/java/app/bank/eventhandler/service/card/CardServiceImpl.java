@@ -45,12 +45,13 @@ public class CardServiceImpl implements CardService {
     }
 
     private String generateNumber() {
-        Random random = new Random();
-        return String.format("%04d %04d %04d %04d",
-                random.nextInt(10000),
-                random.nextInt(10000),
-                random.nextInt(10000),
-                random.nextInt(10000));
+        return String.format(
+                "%04d%04d%04d%04d",
+                1000 + (int) (Math.random() * 8999),
+                1000 + (int) (Math.random() * 8999),
+                1000 + (int) (Math.random() * 8999),
+                1000 + (int) (Math.random() * 8999)
+        );
     }
 
     private Date getUtilDate() {
@@ -85,10 +86,7 @@ public class CardServiceImpl implements CardService {
             final UUID cardId,
             final UUID transactionId
     ) {
-        repository.addTransaction(
-                cardId.toString(),
-                transactionId.toString()
-        );
+        repository.addTransaction(cardId, transactionId);
     }
 
 }

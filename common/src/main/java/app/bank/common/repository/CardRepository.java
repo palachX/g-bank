@@ -13,13 +13,13 @@ import java.util.UUID;
 public interface CardRepository extends JpaRepository<Card, UUID> {
 
     @Query(value ="SELECT c FROM Card c WHERE c.number = :number AND c.dateExpiration = :dateExpiration")
-    boolean existsByNumberAndDate(String number, Date dateExpiration);
+    boolean existsByNumberAndDate(@Param("number") String number, @Param("dateExpiration") Date dateExpiration);
 
     @Query(value ="SELECT c FROM Card c WHERE c.number = :number AND c.dateExpiration = :date AND c.cvv = :cvv")
-    Optional<Card> getByNumberAndDateAndCvv(String number, Date date, String cvv);
+    Optional<Card> getByNumberAndDateAndCvv(@Param("number") String number, @Param("date") Date date, @Param("cvv") String cvv);
 
     @Query(value ="SELECT c FROM Card c WHERE c.number = :number AND c.dateExpiration = :date")
-    Optional<Card> getByNumberAndDate(String number, Date date);
+    Optional<Card> getByNumberAndDate(@Param("number")  String number, @Param("date") Date date);
 
     @Modifying(flushAutomatically = true, clearAutomatically = true)
     @Query(value = """
@@ -27,8 +27,8 @@ public interface CardRepository extends JpaRepository<Card, UUID> {
             VALUES (:cardId, :transactionId)
             """, nativeQuery = true)
     void addTransaction(
-            @Param("cardId") String cardId,
-            @Param("transactionId") String transactionId
+            @Param("cardId") UUID cardId,
+            @Param("transactionId") UUID transactionId
     );
 
 }
