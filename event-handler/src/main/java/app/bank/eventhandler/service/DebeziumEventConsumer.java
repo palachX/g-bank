@@ -5,25 +5,24 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
-import java.util.logging.Logger;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class DebeziumEventConsumer implements CDCEventConsumer {
 
-    private final Logger LOGGER = Logger.getLogger(DebeziumEventConsumer.class.getName());
     private final Map<String, EventHandler> eventHandlers;
 
     @Override
+    @KafkaListener(topics = "events")
     public void process(String payload, Acknowledgment acknowledgment) {
         try {
-            LOGGER.info("Received payload: {}" + payload);
-
+            log.info("Received message: {}", payload);
             JsonObject json = JsonParser.parseString(payload)
                     .getAsJsonObject()
                     .get("payload")
