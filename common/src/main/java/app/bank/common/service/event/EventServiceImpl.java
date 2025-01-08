@@ -1,4 +1,4 @@
-package app.bank.core.service.event;
+package app.bank.common.service.event;
 
 import app.bank.common.events.AbstractEvent;
 import app.bank.common.repository.EventRepository;

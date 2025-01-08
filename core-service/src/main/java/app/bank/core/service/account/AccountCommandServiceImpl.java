@@ -2,7 +2,7 @@ package app.bank.core.service.account;
 
 import app.bank.common.domain.model.Account;
 import app.bank.common.events.AccountCreateEvent;
-import app.bank.core.service.event.EventService;
+import app.bank.common.service.event.EventService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

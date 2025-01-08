@@ -2,7 +2,7 @@ package app.bank.core.service.card;
 
 import app.bank.common.domain.model.Card;
 import app.bank.common.events.CardCreateEvent;
-import app.bank.core.service.event.EventService;
+import app.bank.common.service.event.EventService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

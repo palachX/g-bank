@@ -1,4 +1,4 @@
-package app.bank.core.service.account;
+package app.bank.common.service.account;
 
 import app.bank.common.domain.exception.ResourceNotFoundException;
 import app.bank.common.domain.model.Account;

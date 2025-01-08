@@ -1,4 +1,4 @@
-package app.bank.core.service;
+package app.bank.common.service;
 
 public interface CommandService<T> {
 

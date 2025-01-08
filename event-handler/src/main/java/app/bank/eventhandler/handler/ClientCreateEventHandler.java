@@ -19,7 +19,7 @@ public class ClientCreateEventHandler implements EventHandler {
 
     @Override
     @Transactional
-    public void handle(JsonObject object, Acknowledgment acknowledgment) {
+    public void handle(final JsonObject object, final Acknowledgment acknowledgment) {
         ClientCreateEvent event = gson.fromJson(
                 object,
                 ClientCreateEvent.class

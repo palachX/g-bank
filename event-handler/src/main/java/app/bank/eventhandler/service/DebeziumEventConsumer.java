@@ -35,6 +35,7 @@ public class DebeziumEventConsumer implements CDCEventConsumer {
             eventHandlers.get(type)
                     .handle(json, acknowledgment);
         } catch (Exception e) {
+            log.error("Error message: {}", e.getMessage());
             e.printStackTrace();
         }
     }

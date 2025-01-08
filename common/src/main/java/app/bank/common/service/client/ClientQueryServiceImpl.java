@@ -1,4 +1,4 @@
-package app.bank.core.service.client;
+package app.bank.common.service.client;
 
 import app.bank.common.domain.exception.ResourceNotFoundException;
 import app.bank.common.domain.model.Client;
@@ -28,5 +28,13 @@ public class ClientQueryServiceImpl implements ClientQueryService {
     @Override
     public Client getByPhone(String phone) {
         return clientRepository.findByPhone(phone).orElseThrow(ResourceNotFoundException::new);
+    }
+
+    @Override
+    public Client getByAccount(
+            final UUID accountId
+    ) {
+        return clientRepository.findByAccountId(accountId)
+                .orElseThrow(ResourceNotFoundException::new);
     }
 }

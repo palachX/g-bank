@@ -18,12 +18,17 @@ public class LocalDateTimeDeserializer implements JsonDeserializer<LocalDateTime
 
     @Override
     @SneakyThrows
-    public LocalDateTime deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+    public LocalDateTime deserialize(
+            final JsonElement jsonElement,
+            final Type type,
+            final JsonDeserializationContext jsonDeserializationContext
+    ) {
         return LocalDateTime.ofInstant(
                 Instant.ofEpochMilli(
                         jsonElement.getAsLong() / 1000
                 ),
-                TimeZone.getDefault().toZoneId()
+                TimeZone.getDefault()
+                        .toZoneId()
         );
     }
 }

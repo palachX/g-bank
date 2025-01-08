@@ -1,4 +1,4 @@
-package app.bank.core.service.transaction;
+package app.bank.common.service.transaction;
 
 import app.bank.common.domain.exception.ResourceNotFoundException;
 import app.bank.common.domain.model.Transaction;

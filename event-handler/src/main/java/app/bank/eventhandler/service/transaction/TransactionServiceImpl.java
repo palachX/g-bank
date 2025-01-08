@@ -6,6 +6,7 @@ import app.bank.common.repository.TransactionRepository;
 import app.bank.eventhandler.service.card.CardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 
@@ -17,6 +18,7 @@ public class TransactionServiceImpl implements TransactionService {
     private final CardService cardService;
 
     @Override
+    @Transactional
     public Transaction create(Transaction transaction) {
         Card cardFrom = cardService.getById(transaction.getFrom().getId());
         Card cardTo = cardService.getById(transaction.getTo().getId());

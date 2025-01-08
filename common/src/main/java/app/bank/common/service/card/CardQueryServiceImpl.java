@@ -1,4 +1,4 @@
-package app.bank.core.service.card;
+package app.bank.common.service.card;
 
 import app.bank.common.domain.exception.ResourceNotFoundException;
 import app.bank.common.domain.model.Card;
@@ -29,5 +29,10 @@ public class CardQueryServiceImpl implements CardQueryService {
     @Override
     public Card getByNumberAndDateAndCvv(String number, Date date, String cvv) {
         return cardRepository.getByNumberAndDateAndCvv(number, date, cvv).orElseThrow(ResourceNotFoundException::new);
+    }
+
+    @Override
+    public Card getByNumberAndDate(String number, Date date) {
+        return cardRepository.getByNumberAndDate(number, date).orElseThrow(ResourceNotFoundException::new);
     }
 }

@@ -2,7 +2,9 @@ package app.bank.common.repository;
 
 import app.bank.common.domain.model.Card;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.Date;
 import java.util.Optional;
@@ -10,9 +12,23 @@ import java.util.UUID;
 
 public interface CardRepository extends JpaRepository<Card, UUID> {
 
-    @Query("SELECT c FROM Card c WHERE c.number = ?1 AND c.dateExpiration = ?2")
+    @Query(value ="SELECT c FROM Card c WHERE c.number = :number AND c.dateExpiration = :dateExpiration")
     boolean existsByNumberAndDate(String number, Date dateExpiration);
 
-    @Query("SELECT c FROM Card c WHERE c.number = ?1 AND c.dateExpiration = ?2 AND c.cvv = ?3")
+    @Query(value ="SELECT c FROM Card c WHERE c.number = :number AND c.dateExpiration = :date AND c.cvv = :cvv")
     Optional<Card> getByNumberAndDateAndCvv(String number, Date date, String cvv);
+
+    @Query(value ="SELECT c FROM Card c WHERE c.number = :number AND c.dateExpiration = :date")
+    Optional<Card> getByNumberAndDate(String number, Date date);
+
+    @Modifying(flushAutomatically = true, clearAutomatically = true)
+    @Query(value = """
+            INSERT INTO cards_transactions
+            VALUES (:cardId, :transactionId)
+            """, nativeQuery = true)
+    void addTransaction(
+            @Param("cardId") String cardId,
+            @Param("transactionId") String transactionId
+    );
+
 }

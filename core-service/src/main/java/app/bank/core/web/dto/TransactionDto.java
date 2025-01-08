@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Null;
 import jakarta.validation.constraints.Positive;
+import jakarta.validation.groups.ConvertGroup;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,6 +33,7 @@ public class TransactionDto {
             message = "Sender card must be null"
     )
     @Valid
+    @ConvertGroup(from = OnCreate.class, to = OnTransactionFrom.class)
     private CardDto from;
 
     @NotNull(
@@ -42,6 +44,7 @@ public class TransactionDto {
             message = "Receiver card must be null"
     )
     @Valid
+    @ConvertGroup(from = OnCreate.class, to = OnTransactionTo.class)
     private CardDto to;
 
     @NotNull(

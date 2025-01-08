@@ -12,7 +12,7 @@ public class GsonConfig {
 
     @Bean
     public Gson gson() {
-        return  new GsonBuilder()
+        return new GsonBuilder()
                 .registerTypeAdapter(
                         LocalDateTime.class,
                         new LocalDateTimeDeserializer()

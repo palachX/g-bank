@@ -4,6 +4,7 @@ import app.bank.common.domain.exception.ResourceNotFoundException;
 import app.bank.common.domain.model.Card;
 import app.bank.common.domain.model.Client;
 import app.bank.common.repository.CardRepository;
+import app.bank.common.service.client.ClientQueryService;
 import app.bank.eventhandler.service.client.ClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,8 @@ import java.util.UUID;
 public class CardServiceImpl implements CardService {
 
     private final CardRepository repository;
+    private final ClientQueryService clientQueryService;
+    private final ClientService clientService;
 
     @Override
     public Card create(Card card) {
@@ -28,8 +31,13 @@ public class CardServiceImpl implements CardService {
         card.setDateExpiration(getUtilDate());
         card.setNumber(generateNumber());
         card.setCvv(generateCvv());
+        repository.save(card);
 
-        return repository.save(card);
+        Client client = clientQueryService.getByAccount(
+                card.getAccount().getId()
+        );
+        clientService.addCard(client.getId(), card.getId());
+        return card;
     }
 
     private String generateCvv() {
@@ -77,11 +85,10 @@ public class CardServiceImpl implements CardService {
             final UUID cardId,
             final UUID transactionId
     ) {
-        //TODO  add transaction
-//        repository.addTransaction(
-//                cardId.toString(),
-//                transactionId.toString()
-//        );
+        repository.addTransaction(
+                cardId.toString(),
+                transactionId.toString()
+        );
     }
 
 }

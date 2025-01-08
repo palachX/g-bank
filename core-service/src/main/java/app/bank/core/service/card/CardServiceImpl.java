@@ -2,6 +2,7 @@ package app.bank.core.service.card;
 
 import app.bank.common.domain.model.Card;
 import app.bank.common.domain.model.Client;
+import app.bank.common.service.card.CardQueryService;
 import app.bank.core.service.client.ClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -42,5 +43,10 @@ public class CardServiceImpl implements CardService {
     @Override
     public Card getByNumberAndDateAndCvv(String number, Date date, String cvv) {
         return cardQueryService.getByNumberAndDateAndCvv(number, date, cvv);
+    }
+
+    @Override
+    public Card getByNumberAndDate(String number, Date date) {
+        return cardQueryService.getByNumberAndDate(number, date);
     }
 }

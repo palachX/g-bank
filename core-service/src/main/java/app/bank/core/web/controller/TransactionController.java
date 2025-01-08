@@ -23,7 +23,7 @@ public class TransactionController {
     private final TransactionMapper transactionMapper;
 
     @PostMapping
-    @PreAuthorize("@ssi.canAccessCard(#transactionDto.to.number)")
+    @PreAuthorize("@ssi.canAccessCard(#transactionDto.from)")
     public void create(@RequestBody @Validated(OnCreate.class) final TransactionDto transactionDto) {
         if (!cardService.existsByNumberAndDate(
                 transactionDto.getTo().getNumber(),

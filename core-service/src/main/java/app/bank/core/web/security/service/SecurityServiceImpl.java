@@ -49,7 +49,9 @@ public class SecurityServiceImpl implements SecurityService {
         UUID id = user.getId();
         Client client = clientService.getById(id);
         //TODO refactor to use repository
-        return client.getCards().stream().allMatch(card -> card.getId().equals(cardId));
+        return client.getCards()
+                .stream()
+                .anyMatch(card -> card.getId().equals(cardId));
     }
 
     @Override

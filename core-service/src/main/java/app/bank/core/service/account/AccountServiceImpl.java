@@ -1,6 +1,7 @@
 package app.bank.core.service.account;
 
 import app.bank.common.domain.model.Account;
+import app.bank.common.service.account.AccountQueryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

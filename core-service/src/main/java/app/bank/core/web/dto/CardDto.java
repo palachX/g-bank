@@ -24,7 +24,7 @@ public class CardDto {
 
     @NotNull(
             message = "Number cannot be null",
-            groups = OnCreate.class
+            groups = {OnCreate.class, OnTransactionFrom.class, OnTransactionTo.class}
     )
     @Null(
             message = "Number must be null"
@@ -33,7 +33,7 @@ public class CardDto {
 
     @NotNull(
             message = "Date expiration cannot be null",
-            groups = OnCreate.class
+            groups = {OnCreate.class, OnTransactionFrom.class}
     )
     @Null(
             message = "Date expiration must be null"
@@ -42,10 +42,11 @@ public class CardDto {
 
     @NotNull(
             message = "CVV cannot be null",
-            groups = OnCreate.class
+            groups = {OnCreate.class, OnTransactionFrom.class}
     )
     @Null(
-            message = "CVV must be null"
+            message = "CVV must be null",
+            groups = {OnTransactionTo.class}
     )
     private String cvv;
 

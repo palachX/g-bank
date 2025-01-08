@@ -19,7 +19,7 @@ public class CardCreateEventHandler implements EventHandler {
 
     @Override
     @Transactional
-    public void handle(JsonObject object, Acknowledgment acknowledgment) {
+    public void handle(final JsonObject object, final Acknowledgment acknowledgment) {
         CardCreateEvent event = gson.fromJson(
                 object,
                 CardCreateEvent.class
